@@ -1,0 +1,45 @@
+import java.util.*;
+
+class myexception extends Exception{
+	public myexception(String st)
+	{
+		super(st);
+	}
+}
+class Account
+{
+	int acc_no;
+	String name;
+	double balance;
+	public Account(int acc_no,String name,double balance)
+	{
+		this.acc_no=acc_no;
+		this.name=name;
+		this.balance=balance;
+	}
+	void check() throws  myexception
+	{
+		System.out.println("Account no: "+acc_no);
+		System.out.println("Name: "+ name);
+		if(balance>=1000 && balance<=5000)
+		{
+			System.out.println("Balance within range");
+		}
+		else
+		{
+			System.out.println("Balance out of range");
+		}
+	}
+	public static void main(String args[])
+	{
+		Account a=new Account(01,"siddhi",3000);
+		try
+		{
+		a.check();
+		}
+	catch(myexception e)
+	{
+		System.out.println(e);
+	}
+}
+}
