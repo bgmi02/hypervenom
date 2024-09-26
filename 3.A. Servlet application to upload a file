@@ -51,3 +51,7 @@ os.write(b,0,read);
 out.println("<br>file uploaded successfully...!!!");
 }
 catch(FileNotFoundException e)
+{
+out.print(e);
+}
+}
