@@ -1,0 +1,77 @@
+WebForm1.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" 
+Inherits="WebApplication7.WebForm1" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+ </asp:SiteMapPath>
+ <br />
+ <br />
+ <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1">
+ </asp:Menu>
+ <br />
+ <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+ </div>
+ </form>
+</body>
+</html>
+
+
+WebForm2.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" 
+Inherits="WebApplication7.WebForm2" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+ </head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+ </asp:SiteMapPath>
+ <br /> Welcome to Online Store
+ </div>
+ </form>
+</body>
+</html>
+
+
+WebForm3.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm3.aspx.cs" 
+Inherits="WebApplication7.WebForm3" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+ </asp:SiteMapPath>
+ <br /> Hi Welcome to online Shopping: Mobiles
+ </div>
+ </form>
+</body>
+</html>
+
+
+Web.siteMap
+
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+ <siteMapNode url="WebForm1.aspx" title="Home" description="">
+ <siteMapNode url="WebForm2.aspx" title="Second Page" description="" />
+ <siteMapNode url="WebForm3.aspx" title="Third Page" description="" />
+ </siteMapNode>
+</siteMap>
