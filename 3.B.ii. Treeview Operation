@@ -20,9 +20,11 @@ Inherits="prac3_a.WebForm1" %>
  <asp:TreeView ID="TreeView3" runat="server" 
 OnSelectedNodeChanged="TreeView3_SelectedNodeChanged" 
 OnTreeNodeCollapsed="TreeView3_TreeNodeCollapsed">//Just Changed this 
+
 “OnTreeNodeCollapsed”
- <Nodes>
- <asp:TreeNode Text="Bcom" Value="Bcom" Checked="True" 
+
+<Nodes>
+<asp:TreeNode Text="Bcom" Value="Bcom" Checked="True" 
 ShowCheckBox="True">
  <asp:TreeNode Text="FyBcom" Value="FyBcom" Checked="True" 
 ShowCheckBox="True"></asp:TreeNode>
