@@ -1,0 +1,84 @@
+Part 1: Configure Local AAA Authentication for Console Access on R1 
+Step 1: Test connectivity. 
+• Ping from PC-A to PC-B. 
+• Ping from PC-A to PC-C. 
+• Ping from PC-B to PC-C. 
+Step 2: Configure a local username on R1. 
+Configure a username of Admin1 with a secret password of admin1pa55. 
+R1(config)# username Admin1 secret admin1pa55
+Step 3: Configure local AAA authentication for console access on R1. 
+Enable AAA on R1 and configure AAA authentication for the console login to use the local database. 
+R1(config)# aaa new-model
+R1(config)# aaa authentication login default local
+Step 4: Configure the line console to use the defined AAA authentication method. 
+Enable AAA on R1 and configure AAA authentication for the console login to use the default method list. 
+R1(config)# line console 0
+R1(config-line)# login authentication default
+Step 5: Verify the AAA authentication method. 
+Verify the user EXEC login using the local database. 
+R1(config-line)# end
+%SYS-5-CONFIG_I: Configured from console by console
+R1# exit
+R1 con0 is now available Press 
+RETURN to get started.
+************ AUTHORIZED ACCESS ONLY *************
+UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED.
+User Access Verification
+Username: Admin1
+Password: admin1pa55 R1>
+Part 2: Configure Local AAA Authentication for vty Lines on R1 
+Step 1: Configure domain name and crypto key for use with SSH. 
+a. Use ccnasecurity.com as the domain name on R1. 
+R1(config)# ip domain-name ccnasecurity.com
+b. Create an RSA crypto key using 1024 bits. 
+R1(config)# crypto key generate rsa
+Choose the size of the key modulus in the range of 360 to 2048 for your
+General Purpose Keys. Choosing a key modulus greater than 512 may take
+a few minutes.
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK] Step 
+2: Configure a named list AAA authentication method for the vty lines on R1. 
+Configure a named list called SSH-LOGIN to authenticate logins using local AAA.
+R1(config)# aaa authentication login SSH-LOGIN local
+Step 3: Configure the vty lines to use the defined AAA authentication method. 
+Configure the vty lines to use the named AAA method and only allow SSH for remote access. 
+R1(config)# line vty 0 4
+R1(config-line)# login authentication SSH-LOGIN
+R1(config-line)# transport input ssh R1(config-line)# 
+end
+Step 4: Verify the AAA authentication method. 
+Verify the SSH configuration SSH to R1 from the command prompt of PC-A.. 
+PC> ssh –l Admin1 192.168.1.1
+Open
+Password: admin1pa55
+
+Step 7: Check results. 
+Your completion percentage should be 100%. Click Check Results to see feedback and verification of which 
+required components have been completed. 
+!!!Script for R1
+!!!Part 1 config t username Admin1 
+secret admin1pa55 aaa new-model aaa 
+authentication login default local
+line console 0
+login authentication default
+!!!Part 2
+ip domain-name ccnasecurity.com crypto 
+key generate rsa
+1024
+aaa authentication login SSH-LOGIN local
+line vty 0 4 login authentication SSH-
+LOGIN transport input ssh !!!!Script for 
+R2
+conf t
+username Admin2 secret admin2pa55
+tacacs-server host 192.168.2.2
+tacacs-server key tacacspa55 aaa 
+new-model
+aaa authentication login default group tacacs+ local
+line console 0 login authentication default
+!!!!Script for R3
+conf t username Admin3 secret admin3pa55 radius-
+server host 192.168.3.2
+radius-server key radiuspa55 aaa new-model aaa 
+authentication login default group radius local
+line console 0 login authentication default
